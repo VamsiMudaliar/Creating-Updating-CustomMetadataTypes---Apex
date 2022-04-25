@@ -1,5 +1,5 @@
-# Creating-Updating-CustomMetadataTypes---Apex
-Creating/Updating Custom MetaData Records via Apex. Salesforce Spring Release.
+# Inserting/Updating-CustomMetadataTypes Apex
+Inserting/Updating Custom MetaData Records via Apex. Salesforce Spring Release.
 
 In Salesforce, Custom metadata is metadata that can be customized, deployed, packaged, and upgraded. Records in custom metadata type are considered as metadata rather than data and we can deploy records of Custom Metadata Type with Change Set and other deployment tools. 
 We can issue an unlimited number of Salesforce Object Query Language (SOQL) queries for each Apex transaction using custom metadata types.
