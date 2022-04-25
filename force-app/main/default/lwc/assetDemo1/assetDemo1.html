@@ -1,0 +1,101 @@
+<!--
+  @description       : 
+  @author            : Vamsi Mudaliar 
+  @group             : 
+  @last modified on  : 04-25-2022
+  @last modified by  : Vamsi Mudaliar 
+-->
+<template>
+    <lightning-card title="Custom MetaData Records For Student">
+        <lightning-button label="Create Record" slot="actions" onclick={handleModalClick}></lightning-button>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped" aria-label="Example table of Opportunities with striped rows">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">First Name</div>
+                    </th>
+                    <th class="" scope="col">
+                    <div class="slds-truncate" title="Account Name">Last Name</div>
+                    </th>
+                    <th class="" scope="col">
+                    <div class="slds-truncate" title="Close Date">Email</div>
+                    </th>
+                    <th class="" scope="col">
+                    <div class="slds-truncate" title="Stage">Phone</div>
+                    </th>
+                    <th class="slds-cell_action-mode" scope="col" style="width:3.25rem">
+                        <div class="slds-truncate slds-assistive-text" title="Actions">Actions</div>
+                      </th>
+                </tr>
+                </thead>
+                <tbody>
+                <template for:each={studentList} for:item="rec">
+                    <tr class="slds-hint-parent" key={rec.Id}>
+
+                        <th data-label="First Name" scope="row">
+                        <div class="slds-truncate" title="Cloudhub">
+                        <a href="#" tabindex="-1">{rec.vamsiDemoOrg__First_Name__c}</a>
+                        </div>
+                        </th>
+                        <td data-label="Last Name">
+                        <div class="slds-truncate" title="Cloudhub">{rec.vamsiDemoOrg__Last_Name__c}</div>
+                        </td>
+                        <td data-label="Email">
+                        <div class="slds-truncate" title="email">{rec.vamsiDemoOrg__Email__c}</div>
+                        </td>
+                        <td data-label="Phone">
+                        <div class="slds-truncate" title="telephone">{rec.vamsiDemoOrg__Phone__c}</div>
+                        </td>
+                        <td class="slds-cell_action-mode">
+                                <!-- <a href="#"  data-value={rec.vamsiDemoOrg__First_Name__c} name="update" onclick={handleOperation}>
+                                    <lightning-icon icon-name="action:edit" alternative-text="Edit" size="x-small" title="Edit"></lightning-icon>
+                                </a> -->
+                                <lightning-button label="Edit" data-value={rec.Id} name="update" style="cursor:pointer" onclick={handleOperation}></lightning-button>
+                        </td>
+                    </tr>
+            </template>
+                </tbody>
+            </table>
+        </lightning-card>
+    
+        <template if:true={toggleModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true">
+                <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleModalClick}>
+                <svg class="slds-button__icon slds-button__icon_large" label="mobile" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create Student</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-m-top_medium slds-m-bottom_x-large">
+                        <!-- Default/basic -->
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-input type="text" label="First Name" name="fname" placeholder="John" value={studentRecord.firstName} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-input type="text" label="Last Name" name="lname" placeholder="Doe" value={studentRecord.lastName} onchange={handleChange} required></lightning-input>
+                        </div>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-input type="email" label="Email" name="email" placeholder="johndoe@gmail.com" value={studentRecord.email} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-input type="tel" label="Phone" name="phone" placeholder="12345-67890" value={studentRecord.phone} onchange={handleChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close"  onclick={handleModalClick}>Cancel</button>
+                <button class="slds-button slds-button_brand" name="save" onclick={handleOperation}> Save</button>
+                
+                </div>
+                </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+    
+    
+</template>
